@@ -62,6 +62,12 @@ namespace AKS.Server
                 await Task.Delay(1000);
 
                 var timeout = 1000 * i++;
+
+                if (timeout > 11_000)
+                {
+                    i = 0;
+                }
+
                 try
                 {
                     var serverInfo = await cluster.RequestAsync<ServerInfo>(
