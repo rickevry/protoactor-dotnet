@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aksserver
+  labels:
+    app: aksserver
+spec:
+  clusterIP: None
+  ports:
+    - port: 80
+      name: http
+    - port: 443
+      name: https
+  selector:
+    app: aksserver
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aksserver
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: aksserver
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: aksserver
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: aksserver
+          image: protoactorexampleaks/aksserver:latest
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "150Mi"
+              cpu: "20m"
+            limits:
+              memory: "1000Mi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+          securityContext:
+            capabilities:
+              drop:
+                - NET_RAW
+          env:
+            - name: "DOTNET_ENVIRONMENT"
+              value: "dam"
+            - name: "ASPNETCORE_ENVIRONMENT"
+              value: "dam"
+            - name: DOTNET_SHUTDOWNTIMEOUTSECONDS
+              value: "45"
+            - name: PROTOHOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP

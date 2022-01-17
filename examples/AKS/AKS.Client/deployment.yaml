@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: aksclient
+  labels:
+    app: aksclient
+spec:
+  clusterIP: None
+  ports:
+    - port: 80
+      name: http
+    - port: 443
+      name: https
+  selector:
+    app: aksclient
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aksclient
+spec:
+  replicas: 1
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      app: aksclient
+  template:
+    metadata:
+      labels:
+        app: aksclient
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: aksclient
+          imagePullPolicy: Always
+          image: protoactorexampleaks/aksclient:latest
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "20m"
+            limits:
+              memory: "1000Mi"
+              cpu: "1000m"
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 443
+              protocol: TCP
+          securityContext:
+            capabilities:
+              drop:
+                - NET_RAW
+          env:
+            - name: "DOTNET_ENVIRONMENT"
+              value: "dam"
+            - name: DOTNET_SHUTDOWNTIMEOUTSECONDS
+              value: "45"
+            - name: "ASPNETCORE_ENVIRONMENT"
+              value: "dam"
+            - name: PROTOHOST
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP

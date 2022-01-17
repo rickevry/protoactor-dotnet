@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKS.Client", "AKS.Client\AKS.Client.csproj", "{6ED4D3A7-6500-4795-AC31-2D507216E0FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AKS.Shared", "AKS.Shared\AKS.Shared.csproj", "{1DD9616D-3B76-4745-A2AA-5E29C3FA3FBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ED4D3A7-6500-4795-AC31-2D507216E0FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ED4D3A7-6500-4795-AC31-2D507216E0FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ED4D3A7-6500-4795-AC31-2D507216E0FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ED4D3A7-6500-4795-AC31-2D507216E0FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD9616D-3B76-4745-A2AA-5E29C3FA3FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD9616D-3B76-4745-A2AA-5E29C3FA3FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD9616D-3B76-4745-A2AA-5E29C3FA3FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD9616D-3B76-4745-A2AA-5E29C3FA3FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65E427D5-35CC-47E6-91C2-03A7284DAB67}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="AKS.proto" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Google.Protobuf" Version="3.19.1" />
+		<PackageReference Include="Google.Protobuf.Tools" Version="3.19.1" />
+		<PackageReference Include="Grpc" Version="2.42.0" />
+		<PackageReference Include="Grpc.Tools" Version="2.36.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="3.1.18" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
+		<PackageReference Include="MongoDB.Driver" Version="2.13.1" />
+	</ItemGroup>
+
+	<!--Switch between Project reference and nuget package-->
+	<!--<ItemGroup>
+		<PackageReference Include="Proto.Actor" Version="0.26.0" />
+		<PackageReference Include="Proto.Cluster" Version="0.26.0" />
+		<PackageReference Include="Proto.Cluster.Consul" Version="0.26.0" />
+		<PackageReference Include="Proto.Cluster.Kubernetes" Version="0.26.0" />
+		<PackageReference Include="Proto.Remote.GrpcCore" Version="0.26.0" />
+	</ItemGroup>-->
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\src\Proto.Actor\Proto.Actor.csproj" />
+		<ProjectReference Include="..\..\..\src\Proto.Cluster.Consul\Proto.Cluster.Consul.csproj" />
+		<ProjectReference Include="..\..\..\src\Proto.Cluster.Identity.MongoDb\Proto.Cluster.Identity.MongoDb.csproj" />
+		<ProjectReference Include="..\..\..\src\Proto.Cluster.Kubernetes\Proto.Cluster.Kubernetes.csproj" />
+		<ProjectReference Include="..\..\..\src\Proto.Cluster\Proto.Cluster.csproj" />
+		<ProjectReference Include="..\..\..\src\Proto.Remote.GrpcCore\Proto.Remote.GrpcCore.csproj" />
+	</ItemGroup>
+
+	<!--<ItemGroup>
+		<PackageReference Include="AKS.Shared" Version="1.1.70" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<Protobuf Include="AKS.proto" GrpcServices="Both">
+			<AdditionalImportDirs>.; ..\..\..\src</AdditionalImportDirs>
+		</Protobuf>
+	</ItemGroup>
+
+</Project>

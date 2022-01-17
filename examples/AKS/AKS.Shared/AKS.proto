@@ -1,0 +1,22 @@
+﻿syntax = "proto3";
+package messages;
+option csharp_namespace = "aks.messages";
+
+message HealthCheck {
+
+}
+
+message GetServerInfo {
+    int32 WithDelayMs=1;
+    bool RaiseException=2;
+    string CorrelationId=3;
+}
+
+message ShutdownServerInstance {
+
+}
+
+message ServerInfo {
+    string ServerId = 1;
+    int32 MessagesReceived=2;
+}

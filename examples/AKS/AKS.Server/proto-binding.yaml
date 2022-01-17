@@ -1,0 +1,30 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: example-role  
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  - nodes
+  verbs:
+  - get
+  - watch
+  - list
+  - create
+  - update
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: example-role-binding  
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: example-role
+subjects:
+- kind: ServiceAccount
+  name: default
